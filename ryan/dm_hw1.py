@@ -10,20 +10,27 @@ import sys
 import time
 import numpy as np
 import openpyxl
+
+from sklearn.utils import shuffle
+
+from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
-from xgboost.sklearn import XGBClassifier
+#from xgboost.sklearn import XGBClassifier
+
 from sklearn.decomposition import PCA
 from sklearn.decomposition import NMF
+
+from sklearn.model_selection import cross_validate
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import ShuffleSplit
 from sklearn import metrics
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
+
 
 stime = time.time()
 
 np.random.seed(46)
 eps = 1e-05
-n_estimator = 100
 
 load_path = './super_market_data.xlsx'
 
@@ -58,9 +65,6 @@ item_classes = sorted(list(item_classes))
 
 x = np.zeros((len(mids),len(items)))
 y = np.zeros(len(mids))
-
-print('x shape', x.shape)
-print('y shape', y.shape)
 
 
 for i in range(ws_max_row):
@@ -120,211 +124,180 @@ for i in range(ws_max_row):
 #        y[mids.index(mid)] = 1
 #    else:
 #        y[mids.index(mid)] = 0
+
+
+
+
+#print(x.shape)
+#print(y.shape)
+
+
+# sugffle data
+x, y = shuffle(x, y)
+
+
+
+## Normalization
+#x_mean = np.mean(x)
+#x_std = np.std(x) + eps
+#x = x - np.tile(x_mean,(len(x),1))
+#x = x/np.tile(x_std,(len(x),1))
+
+
+# modle building
+svm = svm.LinearSVC()
+rf = RandomForestClassifier(n_jobs = -1)
+ext = ExtraTreesClassifier(n_jobs = -1)
+#xgb = XGBClassifier(n_jobs = -1)
+
+
+
+clfs = [svm, rf, ext]
+dims = [x.shape[1],256,128,64,32,16,8,4,2]
+
+scoring = ['accuracy','f1','precision','recall','roc_auc']
+
+
+
+for dim in dims:  
+    
+    
+    if dim == x.shape[1]:
         
-
-
-print('----------------------------------------------------')
-print('No Decomposition')
-
-train_valid_ratio = 0.9
-indices = np.random.permutation(x.shape[0])
-train_idx, valid_idx = indices[:int(x.shape[0] * train_valid_ratio)], indices[int(x.shape[0] * train_valid_ratio):]
-x_train, x_valid = x[train_idx,:], x[valid_idx,:]
-y_train, y_valid = y[train_idx], y[valid_idx]
-
-
-x_train_mean = np.mean(x_train)
-x_train_std = np.std(x_train) + eps
-
-x_train = x_train - np.tile(x_train_mean,(len(x_train),1))
-x_train = x_train/np.tile(x_train_std,(len(x_train),1))
-
-
-x_valid = x_valid - np.tile(x_train_mean,(len(x_valid),1))
-x_valid = x_valid/np.tile(x_train_std,(len(x_valid),1))
-
-    
-    
-print('x train shape', x_train.shape)
-print('y train shape', y_train.shape)
-
-print('x valid shape', x_valid.shape)
-print('y valid shape', y_valid.shape)
-
-
-print('Building Model...')
-    
-clf = XGBClassifier()
-
-
-print('Train Model...')
-print('Time Taken:', time.time()-stime)
-
-clf.fit(x_train, y_train)
-
-print('Train Done')
-print('Time Taken:', time.time()-stime)
-
-
-train_pred = clf.predict_proba(x_train)[:,1]
-
-train_acc = accuracy_score(y_train, np.round(train_pred))
-print('Train ACC:', train_acc)
-fpr, tpr, thresholds = metrics.roc_curve(y_train, train_pred, pos_label=1)
-train_auc = metrics.auc(fpr, tpr)
-print('Train AUC:', train_auc)
-
-
-
-valid_pred = clf.predict_proba(x_valid)[:,1]
-
-valid_acc = accuracy_score(y_valid, np.round(valid_pred))
-print('Valid ACC:', valid_acc)
-fpr, tpr, thresholds = metrics.roc_curve(y_valid, valid_pred, pos_label=1)
-valid_auc = metrics.auc(fpr, tpr)
-print('Valid AUC:', valid_auc)
-
-
-
-
-for nmf_dim in [50, 30, 20, 15, 10, 5, 2]:
-    
-    print('----------------------------------------------------')
-    print('NMF Decomposition', nmf_dim)
-    
-    
-    nmf = NMF(n_components = nmf_dim)
-    x_nmf = nmf.fit_transform(x)
-    
-    
-    print('NMF Decomposition Done')
-    
-    train_valid_ratio = 0.9
-    indices = np.random.permutation(x_nmf.shape[0])
-    train_idx, valid_idx = indices[:int(x_nmf.shape[0] * train_valid_ratio)], indices[int(x_nmf.shape[0] * train_valid_ratio):]
-    x_train, x_valid = x_nmf[train_idx,:], x_nmf[valid_idx,:]
-    y_train, y_valid = y[train_idx], y[valid_idx]
-    
-    
-    x_train_mean = np.mean(x_train)
-    x_train_std = np.std(x_train) + eps
-    
-    x_train = x_train - np.tile(x_train_mean,(len(x_train),1))
-    x_train = x_train/np.tile(x_train_std,(len(x_train),1))
-    
-    
-    x_valid = x_valid - np.tile(x_train_mean,(len(x_valid),1))
-    x_valid = x_valid/np.tile(x_train_std,(len(x_valid),1))
-    
-    
-    print('x train shape', x_train.shape)
-    print('y train shape', y_train.shape)
-    
-    print('x valid shape', x_valid.shape)
-    print('y valid shape', y_valid.shape)
-    
-    
-    print('Building Model...')
         
-    clf = XGBClassifier()
-    
-    
-    print('Train Model...')
-    print('Time Taken:', time.time()-stime)
-    
-    clf.fit(x_train, y_train)
-    
-    print('Train Done')
-    print('Time Taken:', time.time()-stime)
-    
-    
-    train_pred = clf.predict_proba(x_train)[:,1]
-    
-    train_acc = accuracy_score(y_train, np.round(train_pred))
-    print('Train ACC:', train_acc)
-    fpr, tpr, thresholds = metrics.roc_curve(y_train, train_pred, pos_label=1)
-    train_auc = metrics.auc(fpr, tpr)
-    print('Train AUC:', train_auc)
-    
-    
-    
-    valid_pred = clf.predict_proba(x_valid)[:,1]
-    
-    valid_acc = accuracy_score(y_valid, np.round(valid_pred))
-    print('Valid ACC:', valid_acc)
-    fpr, tpr, thresholds = metrics.roc_curve(y_valid, valid_pred, pos_label=1)
-    valid_auc = metrics.auc(fpr, tpr)
-    print('Valid AUC:', valid_auc)
-
-
-
-for pca_dim in [500, 200, 100, 50, 30, 15, 8, 2]:
-    
-    print('----------------------------------------------------')
-    print('PCA Decomposition', pca_dim)
-    
-    
-    pca = PCA(n_components = pca_dim)
-    pca.fit(x)
-    
-    x_pca = pca.transform(x)
-    
-    
-    print('PCA Decomposition Done')
-    
-    train_valid_ratio = 0.9
-    indices = np.random.permutation(x_pca.shape[0])
-    train_idx, valid_idx = indices[:int(x_pca.shape[0] * train_valid_ratio)], indices[int(x_pca.shape[0] * train_valid_ratio):]
-    x_train, x_valid = x_pca[train_idx,:], x_pca[valid_idx,:]
-    y_train, y_valid = y[train_idx], y[valid_idx]
-    
-    
-    x_train_mean = np.mean(x_train)
-    x_train_std = np.std(x_train) + eps
-    
-    x_train = x_train - np.tile(x_train_mean,(len(x_train),1))
-    x_train = x_train/np.tile(x_train_std,(len(x_train),1))
-    
-    
-    x_valid = x_valid - np.tile(x_train_mean,(len(x_valid),1))
-    x_valid = x_valid/np.tile(x_train_std,(len(x_valid),1))
-    
-    
-    print('x train shape', x_train.shape)
-    print('y train shape', y_train.shape)
-    
-    print('x valid shape', x_valid.shape)
-    print('y valid shape', y_valid.shape)
-    
-    
-    print('Building Model...')
         
-    clf = XGBClassifier()
+        #################################################
+        ################ NO Decomposition ###############
+        #################################################
+        
+        print('-----------------------------------------------------')
+        print('No Decomposition')
+        
+        print('x shape', x.shape)
+        print('y shape', y.shape)
+        
+        for clf in clfs:
+            
+            print('-----------------------------------------------------')
+            print('The Classifier')
+            print(clf)
+            print('-----------------------------------------------------')
+            
+            
+        
+            scores = cross_validate(clf,
+                                    x, y,
+                                    scoring = scoring,
+                                    cv = 10,
+                                    return_train_score = True,
+                                    n_jobs = -1,
+                                    verbose = 1
+                                    )
+            
+            the_score_keys = sorted(scores.keys())
+            
+            for the_score_key in the_score_keys:
+                the_scores = scores[the_score_key]
+                print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
+            
+            print('-----------------------------------------------------')
+    
+    else:
+        
+            #################################################
+            ################ PCA Decomposition ##############
+            #################################################
+        
+            print('-----------------------------------------------------')
+            print('PCA Decomposition', dim)
+            
+            pca = PCA(n_components = dim)
+            x_pca = pca.fit_transform(x)
+            y_pca = y
+            
+            
+            print('x_pca shape', x_pca.shape)
+            print('y_pca shape', y_pca.shape)
+            
+            for clf in clfs:
+            
+                print('-----------------------------------------------------')
+                print('The Classifier')
+                print(clf)
+                print('-----------------------------------------------------')
+                
+                
+            
+                scores = cross_validate(clf,
+                                        x_pca, y_pca,
+                                        scoring = scoring,
+                                        cv = 10,
+                                        return_train_score = True,
+                                        n_jobs = -1,
+                                        verbose = 1
+                                        )
+                
+                the_score_keys = sorted(scores.keys())
+                
+                for the_score_key in the_score_keys:
+                    the_scores = scores[the_score_key]
+                    print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
+                
+                print('-----------------------------------------------------')
+            
+            
+            
+            
+            #################################################
+            ################ NMF Decomposition ##############
+            #################################################
+            
+            
+            print('-----------------------------------------------------')
+            print('NMF Decomposition', dim)
+            
+            nmf = NMF(n_components = dim)
+            x_nmf = nmf.fit_transform(x)
+            y_nmf = y
+            
+            
+            print('x_nmf shape', x_nmf.shape)
+            print('y_nmf shape', y_nmf.shape)
+        
+            
+            
+            
+            for clf in clfs:
+            
+                print('-----------------------------------------------------')
+                print('The Classifier')
+                print(clf)
+                print('-----------------------------------------------------')
+                
+                
+                scores = cross_validate(clf,
+                                            x_pca, y_pca,
+                                            scoring = scoring,
+                                            cv = 10,
+                                            return_train_score = True,
+                                            n_jobs = -1,
+                                            verbose = 1
+                                        )
+                
+                the_score_keys = sorted(scores.keys())
+                
+                for the_score_key in the_score_keys:
+                    the_scores = scores[the_score_key]
+                    print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
+                
+                print('-----------------------------------------------------')
     
     
-    print('Train Model...')
-    print('Time Taken:', time.time()-stime)
-    
-    clf.fit(x_train, y_train)
-    
-    print('Train Done')
-    print('Time Taken:', time.time()-stime)
     
     
-    train_pred = clf.predict_proba(x_train)[:,1]
-    
-    train_acc = accuracy_score(y_train, np.round(train_pred))
-    print('Train ACC:', train_acc)
-    fpr, tpr, thresholds = metrics.roc_curve(y_train, train_pred, pos_label=1)
-    train_auc = metrics.auc(fpr, tpr)
-    print('Train AUC:', train_auc)
-    
-    
-    
-    valid_pred = clf.predict_proba(x_valid)[:,1]
-    
-    valid_acc = accuracy_score(y_valid, np.round(valid_pred))
-    print('Valid ACC:', valid_acc)
-    fpr, tpr, thresholds = metrics.roc_curve(y_valid, valid_pred, pos_label=1)
-    valid_auc = metrics.auc(fpr, tpr)
-    print('Valid AUC:', valid_auc)
+    print('\n\n')
+
+
+
+
+print('ALL Time Taken:', time.time()-stime)
