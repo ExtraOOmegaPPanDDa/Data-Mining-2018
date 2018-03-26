@@ -13,6 +13,7 @@ import numpy as np
 import openpyxl
 import matplotlib.pyplot as plt
 
+import math
 
 from sklearn.utils import shuffle
 
@@ -67,53 +68,127 @@ plt.imshow(x[0].reshape(48,48), cmap = 'gray')
 
 # PCA Components Plot
 
-nrow, ncol = 8, 8
+nrow, ncol = 10, 10
 pca = PCA(n_components = nrow * ncol)
 x_pca = pca.fit_transform(x)
 
-w = 10
-h = 10
-fig = plt.figure(figsize=(8, 8))
+
+fig = plt.figure(figsize=(15, 15))
 
 for i in range(nrow * ncol):
     fig.add_subplot(nrow, ncol, i + 1)
     plt.imshow(pca.components_[i,:].reshape(48,48), cmap = 'gray')
+    plt.xticks(())
+    plt.yticks(())
 #plt.show()
-plt.savefig('pca_face_components.png')
+plt.savefig('face_pca_components.png')
+plt.clf()
 
 
 # NMF Components Plot
 
-nrow, ncol = 8, 8
+nrow, ncol = 10, 10
 nmf = NMF(n_components = nrow * ncol)
 x_nmf = nmf.fit_transform(x)
 
-w = 10
-h = 10
-fig = plt.figure(figsize=(8, 8))
+
+fig = plt.figure(figsize=(15, 15))
 
 for i in range(nrow * ncol):
     fig.add_subplot(nrow, ncol, i + 1)
     plt.imshow(nmf.components_[i,:].reshape(48,48), cmap = 'gray')
+    plt.xticks(())
+    plt.yticks(())
 #plt.show()
-plt.savefig('nmf_face_components.png')
+plt.savefig('face_nmf_components.png')
+plt.clf()
+
+
+
 
 
 #sys.exit()
+
+
+
+
 
 # modle building
 svm = svm.LinearSVC()
 rf = RandomForestClassifier(n_jobs = -1)
 ext = ExtraTreesClassifier(n_jobs = -1)
-#xgb = XGBClassifier(n_jobs = -1)
+xgb = XGBClassifier(n_jobs = -1)
+
+clfs = [svm, rf, ext, xgb]
+clf_names = ['SVM', 'RF', 'EXT', 'XGB']
+
+#scoring = ['fit_time','accuracy','f1','precision','recall','roc_auc']
+scoring = ['accuracy','f1_micro','f1_macro']
+
+#fit_time
+#score_time
+#test_accuracy
+#test_f1_macro
+#test_f1_micro
+#train_accuracy
+#train_f1_macro
+#train_f1_micro
+
+
+pca_fit_time_records = {}
+
+pca_test_accuracy_records = {}
+pca_test_f1_macro_records = {}
+pca_test_f1_micro_records = {}
+
+pca_train_accuracy_records = {}
+pca_train_f1_macro_records = {}
+pca_train_f1_micro_records = {}
+
+
+nmf_fit_time_records = {}
+
+nmf_test_accuracy_records = {}
+nmf_test_f1_macro_records = {}
+nmf_test_f1_micro_records = {}
+
+nmf_train_accuracy_records = {}
+nmf_train_f1_macro_records = {}
+nmf_train_f1_micro_records = {}
 
 
 
-clfs = [svm, rf, ext]
+
+for clf_name in clf_names:
+    
+    pca_fit_time_records[clf_name] = []
+
+    pca_test_accuracy_records[clf_name] = []
+    pca_test_f1_macro_records[clf_name] = []
+    pca_test_f1_micro_records[clf_name] = []
+    
+    pca_train_accuracy_records[clf_name] = []
+    pca_train_f1_macro_records[clf_name] = []
+    pca_train_f1_micro_records[clf_name] = []
+    
+    
+    nmf_fit_time_records[clf_name] = []
+
+    nmf_test_accuracy_records[clf_name] = []
+    nmf_test_f1_macro_records[clf_name] = []
+    nmf_test_f1_micro_records[clf_name] = []
+    
+    nmf_train_accuracy_records[clf_name] = []
+    nmf_train_f1_macro_records[clf_name] = []
+    nmf_train_f1_micro_records[clf_name] = []
+    
+
+
 dims = [x.shape[1],128,64,32,16,8,4,2]
 
-#scoring = ['accuracy','f1','precision','recall','roc_auc']
-scoring = ['accuracy','f1_micro','f1_macro']
+pca_decomposition_times = []
+nmf_decomposition_times = []
+
 
 
 for dim in dims:  
@@ -133,7 +208,7 @@ for dim in dims:
         print('x shape', x.shape)
         print('y shape', y.shape)
         
-        for clf in clfs:
+        for clf, clf_name in zip(clfs, clf_names):
             
             print('-----------------------------------------------------')
             print('The Classifier')
@@ -157,6 +232,30 @@ for dim in dims:
                 the_scores = scores[the_score_key]
                 print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
             
+            
+            
+            
+            pca_fit_time_records[clf_name].append(scores['fit_time'].mean())
+            pca_test_accuracy_records[clf_name].append(scores['test_accuracy'].mean())
+            pca_test_f1_macro_records[clf_name].append(scores['test_f1_macro'].mean())
+            pca_test_f1_micro_records[clf_name].append(scores['test_f1_micro'].mean())            
+            pca_train_accuracy_records[clf_name].append(scores['train_accuracy'].mean())
+            pca_train_f1_macro_records[clf_name].append(scores['train_f1_macro'].mean())
+            pca_train_f1_micro_records[clf_name].append(scores['train_f1_micro'].mean())
+            
+            
+            nmf_fit_time_records[clf_name].append(scores['fit_time'].mean())            
+            nmf_test_accuracy_records[clf_name].append(scores['test_accuracy'].mean())
+            nmf_test_f1_macro_records[clf_name].append(scores['test_f1_macro'].mean())
+            nmf_test_f1_micro_records[clf_name].append(scores['test_f1_micro'].mean())            
+            nmf_train_accuracy_records[clf_name].append(scores['train_accuracy'].mean())
+            nmf_train_f1_macro_records[clf_name].append(scores['train_f1_macro'].mean())
+            nmf_train_f1_micro_records[clf_name].append(scores['train_f1_micro'].mean())
+            
+            
+            
+            
+            
             print('-----------------------------------------------------')
     
     else:
@@ -168,15 +267,22 @@ for dim in dims:
             print('-----------------------------------------------------')
             print('PCA Decomposition', dim)
             
+            pca_stime = time.time()
+            
             pca = PCA(n_components = dim)
             x_pca = pca.fit_transform(x)
+            
+            pca_decomposition_times.append(time.time() - pca_stime)
+            
             y_pca = y
+            
+           
             
             
             print('x_pca shape', x_pca.shape)
             print('y_pca shape', y_pca.shape)
             
-            for clf in clfs:
+            for clf, clf_name in zip(clfs, clf_names):
             
                 print('-----------------------------------------------------')
                 print('The Classifier')
@@ -200,6 +306,20 @@ for dim in dims:
                     the_scores = scores[the_score_key]
                     print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
                 
+               
+                
+                
+                
+                pca_fit_time_records[clf_name].append(scores['fit_time'].mean())
+                pca_test_accuracy_records[clf_name].append(scores['test_accuracy'].mean())
+                pca_test_f1_macro_records[clf_name].append(scores['test_f1_macro'].mean())
+                pca_test_f1_micro_records[clf_name].append(scores['test_f1_micro'].mean())            
+                pca_train_accuracy_records[clf_name].append(scores['train_accuracy'].mean())
+                pca_train_f1_macro_records[clf_name].append(scores['train_f1_macro'].mean())
+                pca_train_f1_micro_records[clf_name].append(scores['train_f1_micro'].mean())
+                
+                
+                
                 print('-----------------------------------------------------')
             
             
@@ -213,10 +333,14 @@ for dim in dims:
             print('-----------------------------------------------------')
             print('NMF Decomposition', dim)
             
+            nmf_stime = time.time()
+            
             nmf = NMF(n_components = dim)
             x_nmf = nmf.fit_transform(x)
-            y_nmf = y
             
+            nmf_decomposition_times.append(time.time() - nmf_stime)
+            
+            y_nmf = y
             
             print('x_nmf shape', x_nmf.shape)
             print('y_nmf shape', y_nmf.shape)
@@ -224,7 +348,7 @@ for dim in dims:
             
             
             
-            for clf in clfs:
+            for clf, clf_name in zip(clfs, clf_names):
             
                 print('-----------------------------------------------------')
                 print('The Classifier')
@@ -247,6 +371,19 @@ for dim in dims:
                     the_scores = scores[the_score_key]
                     print(the_score_key, ": %0.2f (+/- %0.2f)" % (the_scores.mean(), the_scores.std() * 2))
                 
+                
+                
+                nmf_fit_time_records[clf_name].append(scores['fit_time'].mean())            
+                nmf_test_accuracy_records[clf_name].append(scores['test_accuracy'].mean())
+                nmf_test_f1_macro_records[clf_name].append(scores['test_f1_macro'].mean())
+                nmf_test_f1_micro_records[clf_name].append(scores['test_f1_micro'].mean())            
+                nmf_train_accuracy_records[clf_name].append(scores['train_accuracy'].mean())
+                nmf_train_f1_macro_records[clf_name].append(scores['train_f1_macro'].mean())
+                nmf_train_f1_micro_records[clf_name].append(scores['train_f1_micro'].mean())
+            
+            
+                
+                
                 print('-----------------------------------------------------')
     
     
@@ -254,6 +391,261 @@ for dim in dims:
     
     print('\n\n')
 
+
+log_dims = [math.log(dim,2) for dim in dims]
+
+
+#######################
+# fit time plot
+#######################
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_fit_time_records[clf_name])
+    the_legends.append('PCA_' + clf_name)
+
+
+
+plt.title('PCA Fit Time')
+plt.ylabel('fit time')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='upper left')
+#plt.show()
+plt.savefig('face_pca_fit_time.png')
+plt.clf()
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_fit_time_records[clf_name])
+    the_legends.append('NMF_' + clf_name)
+
+
+
+plt.title('NMF Fit Time')
+plt.ylabel('fit time')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='upper left')
+#plt.show()
+plt.savefig('face_nmf_fit_time.png')
+plt.clf()
+
+
+
+#######################
+# acc plot
+#######################
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_train_accuracy_records[clf_name])
+    the_legends.append('PCA_Train_' + clf_name)
+
+plt.title('PCA Train Accuracy')
+plt.ylabel('train acc')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_train_acc.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_train_accuracy_records[clf_name])
+    the_legends.append('NMF_Train_' + clf_name)
+
+plt.title('NMF Train Accuracy')
+plt.ylabel('train acc')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_train_acc.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_test_accuracy_records[clf_name])
+    the_legends.append('PCA_Test_' + clf_name)
+
+plt.title('PCA Test Accuracy')
+plt.ylabel('test acc')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_test_acc.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_test_accuracy_records[clf_name])
+    the_legends.append('NMF_Test_' + clf_name)
+
+plt.title('NMF Test Accuracy')
+plt.ylabel('test acc')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_test_acc.png')
+plt.clf()
+
+
+
+#######################
+# f1 macro plot
+#######################
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_train_f1_macro_records[clf_name])
+    the_legends.append('PCA_Train_' + clf_name)
+
+plt.title('PCA Train F1-Macro')
+plt.ylabel('train f1-macro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_train_f1_macro.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_train_f1_macro_records[clf_name])
+    the_legends.append('NMF_Train_' + clf_name)
+
+plt.title('NMF Train F1-Macro')
+plt.ylabel('train f1-macro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_train_f1_macro.png')
+plt.clf()
+
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_test_f1_macro_records[clf_name])
+    the_legends.append('PCA_Test_' + clf_name)
+
+plt.title('PCA Test F1-Macro')
+plt.ylabel('test f1-macro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_test_f1_macro.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_test_f1_macro_records[clf_name])
+    the_legends.append('NMF_Test_' + clf_name)
+
+plt.title('NMF Test F1-Macro')
+plt.ylabel('test f1-macro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_test_f1_macro.png')
+plt.clf()
+
+
+
+
+
+
+#######################
+# f1 micro plot
+#######################
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_train_f1_micro_records[clf_name])
+    the_legends.append('PCA_Train_' + clf_name)
+
+plt.title('PCA Train F1-Micro')
+plt.ylabel('train f1-micro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_train_f1_micro.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_train_f1_micro_records[clf_name])
+    the_legends.append('NMF_Train_' + clf_name)
+
+plt.title('NMF Train F1-Micro')
+plt.ylabel('train f1-micro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_train_f1_micro.png')
+plt.clf()
+
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, pca_test_f1_micro_records[clf_name])
+    the_legends.append('PCA_Test_' + clf_name)
+
+plt.title('PCA Test F1-Micro')
+plt.ylabel('test f1-micro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_pca_test_f1_micro.png')
+plt.clf()
+
+
+
+the_legends = []
+for clf_name in clf_names:
+    plt.plot(log_dims, nmf_test_f1_micro_records[clf_name])
+    the_legends.append('NMF_Test_' + clf_name)
+
+plt.title('NMF Test F1-Micro')
+plt.ylabel('test f1-micro')
+plt.xlabel('log dim')
+plt.legend(the_legends, loc='auto')
+plt.ylim(0,1.05)
+#plt.show()
+plt.savefig('face_nmf_test_f1_micro.png')
+plt.clf()
+
+
+
+
+
+print('Dims:', dims)
+print('PCA Decomposition Time:', pca_decomposition_times)
+print('NMF Decomposition Time:', nmf_decomposition_times)
 
 
 
