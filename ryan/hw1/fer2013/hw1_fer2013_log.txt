@@ -1,10 +1,10 @@
-x shape (15066, 2304)
-y shape (15066,)
+x shape (10000, 2304)
+y shape (10000,)
 Category {'4', '3'}
 -----------------------------------------------------
 No Decomposition
-x shape (15066, 2304)
-y shape (15066,)
+x shape (10000, 2304)
+y shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -12,14 +12,14 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 159.72 (+/- 65.40)
-score_time : 0.11 (+/- 0.06)
-test_accuracy : 0.63 (+/- 0.07)
-test_f1_macro : 0.57 (+/- 0.13)
-test_f1_micro : 0.63 (+/- 0.06)
-train_accuracy : 0.69 (+/- 0.10)
-train_f1_macro : 0.64 (+/- 0.18)
-train_f1_micro : 0.69 (+/- 0.10)
+fit_time : 102.76 (+/- 29.81)
+score_time : 0.07 (+/- 0.06)
+test_accuracy : 0.59 (+/- 0.04)
+test_f1_macro : 0.57 (+/- 0.08)
+test_f1_micro : 0.59 (+/- 0.04)
+train_accuracy : 0.71 (+/- 0.10)
+train_f1_macro : 0.69 (+/- 0.13)
+train_f1_micro : 0.70 (+/- 0.09)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -31,11 +31,11 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 8.70 (+/- 1.37)
-score_time : 0.41 (+/- 0.10)
-test_accuracy : 0.69 (+/- 0.02)
-test_f1_macro : 0.66 (+/- 0.02)
-test_f1_micro : 0.69 (+/- 0.02)
+fit_time : 5.35 (+/- 1.57)
+score_time : 0.37 (+/- 0.04)
+test_accuracy : 0.66 (+/- 0.03)
+test_f1_macro : 0.66 (+/- 0.03)
+test_f1_micro : 0.66 (+/- 0.03)
 train_accuracy : 0.99 (+/- 0.00)
 train_f1_macro : 0.99 (+/- 0.00)
 train_f1_micro : 0.99 (+/- 0.00)
@@ -49,11 +49,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 5.53 (+/- 1.64)
-score_time : 0.40 (+/- 0.09)
-test_accuracy : 0.69 (+/- 0.02)
-test_f1_macro : 0.65 (+/- 0.02)
-test_f1_micro : 0.69 (+/- 0.02)
+fit_time : 2.67 (+/- 0.58)
+score_time : 0.37 (+/- 0.03)
+test_accuracy : 0.66 (+/- 0.02)
+test_f1_macro : 0.66 (+/- 0.02)
+test_f1_micro : 0.66 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -67,22 +67,328 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 185.81 (+/- 94.43)
-score_time : 0.84 (+/- 0.65)
-test_accuracy : 0.73 (+/- 0.02)
-test_f1_macro : 0.71 (+/- 0.02)
-test_f1_micro : 0.73 (+/- 0.02)
-train_accuracy : 0.79 (+/- 0.00)
-train_f1_macro : 0.78 (+/- 0.01)
-train_f1_micro : 0.79 (+/- 0.00)
+fit_time : 108.56 (+/- 48.80)
+score_time : 0.57 (+/- 0.47)
+test_accuracy : 0.72 (+/- 0.02)
+test_f1_macro : 0.72 (+/- 0.02)
+test_f1_micro : 0.72 (+/- 0.02)
+train_accuracy : 0.81 (+/- 0.01)
+train_f1_macro : 0.81 (+/- 0.01)
+train_f1_micro : 0.81 (+/- 0.01)
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+PCA Decomposition 512
+x_pca shape (10000, 512)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 26.91 (+/- 8.73)
+score_time : 0.02 (+/- 0.01)
+test_accuracy : 0.58 (+/- 0.04)
+test_f1_macro : 0.58 (+/- 0.04)
+test_f1_micro : 0.58 (+/- 0.04)
+train_accuracy : 0.60 (+/- 0.04)
+train_f1_macro : 0.60 (+/- 0.04)
+train_f1_micro : 0.60 (+/- 0.04)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 2.98 (+/- 1.49)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.56 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 1.17 (+/- 0.55)
+score_time : 0.33 (+/- 0.02)
+test_accuracy : 0.55 (+/- 0.04)
+test_f1_macro : 0.54 (+/- 0.04)
+test_f1_micro : 0.55 (+/- 0.04)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 53.39 (+/- 24.11)
+score_time : 0.06 (+/- 0.05)
+test_accuracy : 0.71 (+/- 0.03)
+test_f1_macro : 0.71 (+/- 0.03)
+test_f1_micro : 0.71 (+/- 0.03)
+train_accuracy : 0.80 (+/- 0.00)
+train_f1_macro : 0.80 (+/- 0.00)
+train_f1_micro : 0.80 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+NMF Decomposition 512
+x_nmf shape (10000, 512)
+y_nmf shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 27.54 (+/- 11.86)
+score_time : 0.02 (+/- 0.01)
+test_accuracy : 0.59 (+/- 0.06)
+test_f1_macro : 0.59 (+/- 0.06)
+test_f1_micro : 0.59 (+/- 0.06)
+train_accuracy : 0.62 (+/- 0.05)
+train_f1_macro : 0.62 (+/- 0.05)
+train_f1_micro : 0.62 (+/- 0.05)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 3.22 (+/- 1.65)
+score_time : 0.33 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.56 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 1.26 (+/- 0.63)
+score_time : 0.33 (+/- 0.01)
+test_accuracy : 0.56 (+/- 0.03)
+test_f1_macro : 0.55 (+/- 0.03)
+test_f1_micro : 0.56 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 52.05 (+/- 23.65)
+score_time : 0.07 (+/- 0.07)
+test_accuracy : 0.71 (+/- 0.03)
+test_f1_macro : 0.71 (+/- 0.03)
+test_f1_micro : 0.71 (+/- 0.03)
+train_accuracy : 0.80 (+/- 0.00)
+train_f1_macro : 0.80 (+/- 0.00)
+train_f1_micro : 0.80 (+/- 0.00)
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+PCA Decomposition 256
+x_pca shape (10000, 256)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 15.58 (+/- 4.16)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.60 (+/- 0.04)
+test_f1_macro : 0.60 (+/- 0.04)
+test_f1_micro : 0.60 (+/- 0.04)
+train_accuracy : 0.61 (+/- 0.04)
+train_f1_macro : 0.61 (+/- 0.04)
+train_f1_micro : 0.61 (+/- 0.04)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 2.15 (+/- 0.97)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.59 (+/- 0.03)
+test_f1_macro : 0.58 (+/- 0.03)
+test_f1_micro : 0.59 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.87 (+/- 0.61)
+score_time : 0.33 (+/- 0.02)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.56 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 28.81 (+/- 13.55)
+score_time : 0.05 (+/- 0.06)
+test_accuracy : 0.70 (+/- 0.01)
+test_f1_macro : 0.70 (+/- 0.01)
+test_f1_micro : 0.70 (+/- 0.01)
+train_accuracy : 0.79 (+/- 0.01)
+train_f1_macro : 0.79 (+/- 0.01)
+train_f1_micro : 0.79 (+/- 0.01)
+-----------------------------------------------------
+-----------------------------------------------------
+NMF Decomposition 256
+x_nmf shape (10000, 256)
+y_nmf shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 15.79 (+/- 5.40)
+score_time : 0.02 (+/- 0.03)
+test_accuracy : 0.60 (+/- 0.05)
+test_f1_macro : 0.60 (+/- 0.05)
+test_f1_micro : 0.60 (+/- 0.05)
+train_accuracy : 0.61 (+/- 0.06)
+train_f1_macro : 0.61 (+/- 0.06)
+train_f1_micro : 0.61 (+/- 0.06)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 2.16 (+/- 1.00)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.58 (+/- 0.03)
+test_f1_macro : 0.57 (+/- 0.03)
+test_f1_micro : 0.58 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.76 (+/- 0.39)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.58 (+/- 0.03)
+test_f1_macro : 0.57 (+/- 0.03)
+test_f1_micro : 0.58 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 26.24 (+/- 11.95)
+score_time : 0.04 (+/- 0.03)
+test_accuracy : 0.70 (+/- 0.01)
+test_f1_macro : 0.70 (+/- 0.01)
+test_f1_micro : 0.70 (+/- 0.01)
+train_accuracy : 0.79 (+/- 0.01)
+train_f1_macro : 0.79 (+/- 0.01)
+train_f1_micro : 0.79 (+/- 0.01)
 -----------------------------------------------------
 
 
 
 -----------------------------------------------------
 PCA Decomposition 128
-x_pca shape (15066, 128)
-y_pca shape (15066,)
+x_pca shape (10000, 128)
+y_pca shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -90,319 +396,13 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 16.48 (+/- 5.45)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.59 (+/- 0.08)
-test_f1_macro : 0.58 (+/- 0.08)
-test_f1_micro : 0.59 (+/- 0.08)
-train_accuracy : 0.59 (+/- 0.07)
-train_f1_macro : 0.59 (+/- 0.07)
-train_f1_micro : 0.60 (+/- 0.07)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 2.52 (+/- 1.13)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.65 (+/- 0.02)
-test_f1_macro : 0.59 (+/- 0.03)
-test_f1_micro : 0.65 (+/- 0.02)
-train_accuracy : 0.99 (+/- 0.00)
-train_f1_macro : 0.99 (+/- 0.00)
-train_f1_micro : 0.99 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.77 (+/- 0.38)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.64 (+/- 0.02)
-test_f1_macro : 0.58 (+/- 0.02)
-test_f1_micro : 0.64 (+/- 0.02)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 20.65 (+/- 9.00)
-score_time : 0.05 (+/- 0.05)
-test_accuracy : 0.71 (+/- 0.02)
-test_f1_macro : 0.67 (+/- 0.02)
-test_f1_micro : 0.71 (+/- 0.02)
-train_accuracy : 0.76 (+/- 0.00)
-train_f1_macro : 0.74 (+/- 0.00)
-train_f1_micro : 0.76 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-NMF Decomposition 128
-x_nmf shape (15066, 128)
-y_nmf shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 16.04 (+/- 4.88)
+fit_time : 14.17 (+/- 7.09)
 score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.59 (+/- 0.02)
-test_f1_macro : 0.58 (+/- 0.02)
-test_f1_micro : 0.59 (+/- 0.02)
-train_accuracy : 0.59 (+/- 0.02)
-train_f1_macro : 0.59 (+/- 0.02)
-train_f1_micro : 0.59 (+/- 0.02)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 2.47 (+/- 1.04)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.65 (+/- 0.02)
-test_f1_macro : 0.59 (+/- 0.02)
-test_f1_micro : 0.65 (+/- 0.02)
-train_accuracy : 0.99 (+/- 0.00)
-train_f1_macro : 0.99 (+/- 0.00)
-train_f1_micro : 0.99 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.84 (+/- 0.40)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.64 (+/- 0.02)
-test_f1_macro : 0.58 (+/- 0.02)
-test_f1_micro : 0.64 (+/- 0.02)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 20.28 (+/- 9.80)
-score_time : 0.06 (+/- 0.06)
-test_accuracy : 0.71 (+/- 0.02)
-test_f1_macro : 0.67 (+/- 0.02)
-test_f1_micro : 0.71 (+/- 0.02)
-train_accuracy : 0.76 (+/- 0.00)
-train_f1_macro : 0.74 (+/- 0.00)
-train_f1_micro : 0.76 (+/- 0.00)
------------------------------------------------------
-
-
-
------------------------------------------------------
-PCA Decomposition 64
-x_pca shape (15066, 64)
-y_pca shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 11.68 (+/- 1.79)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.58 (+/- 0.09)
-test_f1_macro : 0.57 (+/- 0.10)
-test_f1_micro : 0.58 (+/- 0.10)
-train_accuracy : 0.59 (+/- 0.09)
-train_f1_macro : 0.58 (+/- 0.09)
-train_f1_micro : 0.59 (+/- 0.09)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 1.61 (+/- 0.69)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.66 (+/- 0.01)
-test_f1_macro : 0.62 (+/- 0.01)
-test_f1_micro : 0.66 (+/- 0.01)
-train_accuracy : 0.99 (+/- 0.00)
-train_f1_macro : 0.99 (+/- 0.00)
-train_f1_micro : 0.99 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.54 (+/- 0.07)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.67 (+/- 0.01)
-test_f1_macro : 0.62 (+/- 0.01)
-test_f1_micro : 0.67 (+/- 0.01)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 9.79 (+/- 4.48)
-score_time : 0.04 (+/- 0.03)
-test_accuracy : 0.71 (+/- 0.02)
-test_f1_macro : 0.68 (+/- 0.02)
-test_f1_micro : 0.71 (+/- 0.02)
-train_accuracy : 0.76 (+/- 0.00)
-train_f1_macro : 0.74 (+/- 0.00)
-train_f1_micro : 0.76 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-NMF Decomposition 64
-x_nmf shape (15066, 64)
-y_nmf shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : -1.98 (+/- 35.11)
-score_time : 0.01 (+/- 0.02)
-test_accuracy : 0.58 (+/- 0.05)
-test_f1_macro : 0.57 (+/- 0.06)
-test_f1_micro : 0.58 (+/- 0.06)
-train_accuracy : 0.59 (+/- 0.05)
-train_f1_macro : 0.58 (+/- 0.05)
-train_f1_micro : 0.59 (+/- 0.05)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 1.91 (+/- 0.66)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.66 (+/- 0.02)
-test_f1_macro : 0.62 (+/- 0.02)
-test_f1_micro : 0.66 (+/- 0.02)
-train_accuracy : 0.99 (+/- 0.00)
-train_f1_macro : 0.99 (+/- 0.00)
-train_f1_micro : 0.99 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.53 (+/- 0.27)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.66 (+/- 0.02)
-test_f1_macro : 0.60 (+/- 0.02)
-test_f1_micro : 0.66 (+/- 0.02)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 10.97 (+/- 4.87)
-score_time : 0.05 (+/- 0.03)
-test_accuracy : 0.71 (+/- 0.02)
-test_f1_macro : 0.68 (+/- 0.02)
-test_f1_micro : 0.71 (+/- 0.02)
-train_accuracy : 0.76 (+/- 0.00)
-train_f1_macro : 0.74 (+/- 0.00)
-train_f1_micro : 0.76 (+/- 0.00)
------------------------------------------------------
-
-
-
------------------------------------------------------
-PCA Decomposition 32
-x_pca shape (15066, 32)
-y_pca shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 9.08 (+/- 2.36)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.57 (+/- 0.06)
-test_f1_macro : 0.56 (+/- 0.06)
-test_f1_micro : 0.57 (+/- 0.06)
+test_accuracy : 0.56 (+/- 0.08)
+test_f1_macro : 0.56 (+/- 0.08)
+test_f1_micro : 0.56 (+/- 0.08)
 train_accuracy : 0.57 (+/- 0.07)
-train_f1_macro : 0.56 (+/- 0.07)
+train_f1_macro : 0.57 (+/- 0.07)
 train_f1_micro : 0.57 (+/- 0.07)
 -----------------------------------------------------
 -----------------------------------------------------
@@ -415,11 +415,11 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 1.09 (+/- 0.55)
-score_time : 0.32 (+/- 0.00)
-test_accuracy : 0.68 (+/- 0.03)
-test_f1_macro : 0.64 (+/- 0.03)
-test_f1_micro : 0.68 (+/- 0.03)
+fit_time : 1.35 (+/- 0.58)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.61 (+/- 0.02)
+test_f1_macro : 0.61 (+/- 0.02)
+test_f1_micro : 0.61 (+/- 0.02)
 train_accuracy : 0.99 (+/- 0.00)
 train_f1_macro : 0.99 (+/- 0.00)
 train_f1_micro : 0.99 (+/- 0.00)
@@ -433,11 +433,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.63 (+/- 0.40)
-score_time : 0.33 (+/- 0.03)
-test_accuracy : 0.67 (+/- 0.01)
-test_f1_macro : 0.62 (+/- 0.02)
-test_f1_micro : 0.67 (+/- 0.01)
+fit_time : 0.46 (+/- 0.21)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.61 (+/- 0.04)
+test_f1_macro : 0.60 (+/- 0.04)
+test_f1_micro : 0.61 (+/- 0.04)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -451,19 +451,19 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 5.78 (+/- 2.01)
-score_time : 0.04 (+/- 0.05)
+fit_time : 14.54 (+/- 5.15)
+score_time : 0.05 (+/- 0.06)
 test_accuracy : 0.70 (+/- 0.02)
-test_f1_macro : 0.67 (+/- 0.02)
+test_f1_macro : 0.70 (+/- 0.02)
 test_f1_micro : 0.70 (+/- 0.02)
-train_accuracy : 0.74 (+/- 0.00)
-train_f1_macro : 0.72 (+/- 0.00)
-train_f1_micro : 0.74 (+/- 0.00)
+train_accuracy : 0.79 (+/- 0.01)
+train_f1_macro : 0.79 (+/- 0.01)
+train_f1_micro : 0.79 (+/- 0.01)
 -----------------------------------------------------
 -----------------------------------------------------
-NMF Decomposition 32
-x_nmf shape (15066, 32)
-y_nmf shape (15066,)
+NMF Decomposition 128
+x_nmf shape (10000, 128)
+y_nmf shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -471,13 +471,91 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 9.53 (+/- 4.19)
-score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.59 (+/- 0.04)
+fit_time : 11.43 (+/- 4.28)
+score_time : 0.01 (+/- 0.02)
+test_accuracy : 0.59 (+/- 0.05)
+test_f1_macro : 0.59 (+/- 0.05)
+test_f1_micro : 0.59 (+/- 0.05)
+train_accuracy : 0.59 (+/- 0.04)
+train_f1_macro : 0.59 (+/- 0.04)
+train_f1_micro : 0.59 (+/- 0.04)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 1.39 (+/- 0.63)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.61 (+/- 0.02)
+test_f1_macro : 0.60 (+/- 0.02)
+test_f1_micro : 0.61 (+/- 0.02)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.64 (+/- 0.30)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.60 (+/- 0.02)
+test_f1_macro : 0.60 (+/- 0.03)
+test_f1_micro : 0.60 (+/- 0.02)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 15.47 (+/- 7.18)
+score_time : 0.03 (+/- 0.02)
+test_accuracy : 0.70 (+/- 0.02)
+test_f1_macro : 0.70 (+/- 0.02)
+test_f1_micro : 0.70 (+/- 0.02)
+train_accuracy : 0.79 (+/- 0.01)
+train_f1_macro : 0.79 (+/- 0.01)
+train_f1_micro : 0.79 (+/- 0.01)
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+PCA Decomposition 64
+x_pca shape (10000, 64)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 6.59 (+/- 0.96)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.58 (+/- 0.04)
 test_f1_macro : 0.58 (+/- 0.04)
-test_f1_micro : 0.59 (+/- 0.04)
+test_f1_micro : 0.58 (+/- 0.04)
 train_accuracy : 0.58 (+/- 0.05)
-train_f1_macro : 0.57 (+/- 0.05)
+train_f1_macro : 0.58 (+/- 0.05)
 train_f1_micro : 0.58 (+/- 0.05)
 -----------------------------------------------------
 -----------------------------------------------------
@@ -490,11 +568,11 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 1.04 (+/- 0.55)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.67 (+/- 0.02)
+fit_time : 1.27 (+/- 0.13)
+score_time : 0.32 (+/- 0.00)
+test_accuracy : 0.63 (+/- 0.03)
 test_f1_macro : 0.63 (+/- 0.03)
-test_f1_micro : 0.67 (+/- 0.02)
+test_f1_micro : 0.63 (+/- 0.03)
 train_accuracy : 0.99 (+/- 0.00)
 train_f1_macro : 0.99 (+/- 0.00)
 train_f1_micro : 0.99 (+/- 0.00)
@@ -508,11 +586,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.34 (+/- 0.11)
+fit_time : 0.38 (+/- 0.14)
 score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.67 (+/- 0.02)
-test_f1_macro : 0.63 (+/- 0.03)
-test_f1_micro : 0.67 (+/- 0.02)
+test_accuracy : 0.63 (+/- 0.01)
+test_f1_macro : 0.62 (+/- 0.01)
+test_f1_micro : 0.63 (+/- 0.01)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -526,22 +604,250 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 5.50 (+/- 2.46)
-score_time : 0.04 (+/- 0.04)
+fit_time : 7.79 (+/- 3.24)
+score_time : 0.04 (+/- 0.06)
 test_accuracy : 0.70 (+/- 0.02)
-test_f1_macro : 0.67 (+/- 0.02)
+test_f1_macro : 0.70 (+/- 0.02)
 test_f1_micro : 0.70 (+/- 0.02)
-train_accuracy : 0.74 (+/- 0.00)
-train_f1_macro : 0.72 (+/- 0.00)
-train_f1_micro : 0.74 (+/- 0.00)
+train_accuracy : 0.78 (+/- 0.00)
+train_f1_macro : 0.78 (+/- 0.00)
+train_f1_micro : 0.78 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+NMF Decomposition 64
+x_nmf shape (10000, 64)
+y_nmf shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 6.65 (+/- 2.39)
+score_time : 0.01 (+/- 0.03)
+test_accuracy : 0.57 (+/- 0.07)
+test_f1_macro : 0.57 (+/- 0.07)
+test_f1_micro : 0.57 (+/- 0.07)
+train_accuracy : 0.58 (+/- 0.06)
+train_f1_macro : 0.58 (+/- 0.06)
+train_f1_micro : 0.58 (+/- 0.06)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 1.04 (+/- 0.50)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.63 (+/- 0.03)
+test_f1_macro : 0.62 (+/- 0.03)
+test_f1_micro : 0.63 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.33 (+/- 0.10)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.63 (+/- 0.03)
+test_f1_macro : 0.62 (+/- 0.03)
+test_f1_micro : 0.63 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 7.56 (+/- 3.21)
+score_time : 0.03 (+/- 0.03)
+test_accuracy : 0.70 (+/- 0.02)
+test_f1_macro : 0.70 (+/- 0.02)
+test_f1_micro : 0.70 (+/- 0.02)
+train_accuracy : 0.78 (+/- 0.00)
+train_f1_macro : 0.78 (+/- 0.00)
+train_f1_micro : 0.78 (+/- 0.00)
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+PCA Decomposition 32
+x_pca shape (10000, 32)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 4.86 (+/- 1.18)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.07)
+test_f1_macro : 0.56 (+/- 0.07)
+test_f1_micro : 0.56 (+/- 0.07)
+train_accuracy : 0.57 (+/- 0.06)
+train_f1_macro : 0.57 (+/- 0.06)
+train_f1_micro : 0.57 (+/- 0.06)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 0.73 (+/- 0.44)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.64 (+/- 0.03)
+test_f1_macro : 0.64 (+/- 0.03)
+test_f1_micro : 0.64 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.21 (+/- 0.16)
+score_time : 0.32 (+/- 0.00)
+test_accuracy : 0.64 (+/- 0.02)
+test_f1_macro : 0.64 (+/- 0.02)
+test_f1_micro : 0.64 (+/- 0.02)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 3.53 (+/- 1.83)
+score_time : 0.02 (+/- 0.02)
+test_accuracy : 0.69 (+/- 0.02)
+test_f1_macro : 0.69 (+/- 0.02)
+test_f1_micro : 0.69 (+/- 0.02)
+train_accuracy : 0.76 (+/- 0.01)
+train_f1_macro : 0.76 (+/- 0.01)
+train_f1_micro : 0.76 (+/- 0.01)
+-----------------------------------------------------
+-----------------------------------------------------
+NMF Decomposition 32
+x_nmf shape (10000, 32)
+y_nmf shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 3.99 (+/- 0.92)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.06)
+test_f1_macro : 0.57 (+/- 0.06)
+test_f1_micro : 0.57 (+/- 0.06)
+train_accuracy : 0.57 (+/- 0.05)
+train_f1_macro : 0.57 (+/- 0.05)
+train_f1_micro : 0.57 (+/- 0.05)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 0.68 (+/- 0.38)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.64 (+/- 0.03)
+test_f1_macro : 0.64 (+/- 0.03)
+test_f1_micro : 0.64 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.22 (+/- 0.10)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.64 (+/- 0.03)
+test_f1_macro : 0.64 (+/- 0.03)
+test_f1_micro : 0.64 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 3.31 (+/- 1.38)
+score_time : 0.03 (+/- 0.02)
+test_accuracy : 0.69 (+/- 0.02)
+test_f1_macro : 0.69 (+/- 0.02)
+test_f1_micro : 0.69 (+/- 0.02)
+train_accuracy : 0.76 (+/- 0.01)
+train_f1_macro : 0.76 (+/- 0.01)
+train_f1_micro : 0.76 (+/- 0.01)
 -----------------------------------------------------
 
 
 
 -----------------------------------------------------
 PCA Decomposition 16
-x_pca shape (15066, 16)
-y_pca shape (15066,)
+x_pca shape (10000, 16)
+y_pca shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -549,14 +855,14 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 4.55 (+/- 1.26)
-score_time : 0.01 (+/- 0.02)
+fit_time : 2.60 (+/- 0.10)
+score_time : 0.01 (+/- 0.01)
 test_accuracy : 0.53 (+/- 0.06)
-test_f1_macro : 0.52 (+/- 0.06)
-test_f1_micro : 0.54 (+/- 0.06)
-train_accuracy : 0.53 (+/- 0.06)
-train_f1_macro : 0.52 (+/- 0.06)
-train_f1_micro : 0.53 (+/- 0.06)
+test_f1_macro : 0.53 (+/- 0.06)
+test_f1_micro : 0.53 (+/- 0.06)
+train_accuracy : 0.53 (+/- 0.05)
+train_f1_macro : 0.53 (+/- 0.05)
+train_f1_micro : 0.53 (+/- 0.05)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -568,14 +874,14 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 1.02 (+/- 0.39)
+fit_time : 0.68 (+/- 0.24)
 score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.65 (+/- 0.02)
+test_accuracy : 0.61 (+/- 0.03)
 test_f1_macro : 0.60 (+/- 0.03)
-test_f1_micro : 0.65 (+/- 0.02)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
+test_f1_micro : 0.61 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -586,11 +892,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.29 (+/- 0.16)
+fit_time : 0.25 (+/- 0.16)
 score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.65 (+/- 0.02)
-test_f1_macro : 0.60 (+/- 0.03)
-test_f1_micro : 0.65 (+/- 0.02)
+test_accuracy : 0.62 (+/- 0.02)
+test_f1_macro : 0.61 (+/- 0.02)
+test_f1_micro : 0.62 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -604,19 +910,19 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 3.18 (+/- 1.29)
-score_time : 0.04 (+/- 0.05)
-test_accuracy : 0.65 (+/- 0.01)
-test_f1_macro : 0.60 (+/- 0.02)
-test_f1_micro : 0.65 (+/- 0.01)
-train_accuracy : 0.69 (+/- 0.00)
-train_f1_macro : 0.65 (+/- 0.01)
-train_f1_micro : 0.69 (+/- 0.00)
+fit_time : 1.91 (+/- 0.81)
+score_time : 0.02 (+/- 0.01)
+test_accuracy : 0.63 (+/- 0.03)
+test_f1_macro : 0.63 (+/- 0.03)
+test_f1_micro : 0.63 (+/- 0.03)
+train_accuracy : 0.70 (+/- 0.00)
+train_f1_macro : 0.70 (+/- 0.00)
+train_f1_micro : 0.70 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 NMF Decomposition 16
-x_nmf shape (15066, 16)
-y_nmf shape (15066,)
+x_nmf shape (10000, 16)
+y_nmf shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -624,14 +930,14 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 5.09 (+/- 2.04)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.55 (+/- 0.08)
-test_f1_macro : 0.54 (+/- 0.07)
-test_f1_micro : 0.55 (+/- 0.07)
-train_accuracy : 0.55 (+/- 0.07)
-train_f1_macro : 0.54 (+/- 0.07)
-train_f1_micro : 0.55 (+/- 0.07)
+fit_time : 2.37 (+/- 0.80)
+score_time : 0.01 (+/- 0.02)
+test_accuracy : 0.53 (+/- 0.06)
+test_f1_macro : 0.53 (+/- 0.06)
+test_f1_micro : 0.53 (+/- 0.06)
+train_accuracy : 0.53 (+/- 0.05)
+train_f1_macro : 0.53 (+/- 0.05)
+train_f1_micro : 0.53 (+/- 0.05)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -643,14 +949,14 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 0.90 (+/- 0.42)
-score_time : 0.32 (+/- 0.00)
-test_accuracy : 0.65 (+/- 0.02)
-test_f1_macro : 0.60 (+/- 0.02)
-test_f1_micro : 0.65 (+/- 0.02)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
+fit_time : 0.58 (+/- 0.30)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.61 (+/- 0.03)
+test_f1_macro : 0.61 (+/- 0.03)
+test_f1_micro : 0.61 (+/- 0.03)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -661,11 +967,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.26 (+/- 0.15)
+fit_time : 0.19 (+/- 0.13)
 score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.66 (+/- 0.02)
+test_accuracy : 0.61 (+/- 0.02)
 test_f1_macro : 0.61 (+/- 0.02)
-test_f1_micro : 0.66 (+/- 0.02)
+test_f1_micro : 0.61 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -679,22 +985,22 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 2.59 (+/- 1.12)
-score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.65 (+/- 0.01)
-test_f1_macro : 0.60 (+/- 0.02)
-test_f1_micro : 0.65 (+/- 0.01)
-train_accuracy : 0.69 (+/- 0.00)
-train_f1_macro : 0.65 (+/- 0.01)
-train_f1_micro : 0.69 (+/- 0.00)
+fit_time : 1.70 (+/- 0.76)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.63 (+/- 0.03)
+test_f1_macro : 0.63 (+/- 0.03)
+test_f1_micro : 0.63 (+/- 0.03)
+train_accuracy : 0.70 (+/- 0.00)
+train_f1_macro : 0.70 (+/- 0.00)
+train_f1_micro : 0.70 (+/- 0.00)
 -----------------------------------------------------
 
 
 
 -----------------------------------------------------
 PCA Decomposition 8
-x_pca shape (15066, 8)
-y_pca shape (15066,)
+x_pca shape (10000, 8)
+y_pca shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -702,14 +1008,14 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 3.00 (+/- 1.32)
+fit_time : 1.51 (+/- 0.71)
 score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.54 (+/- 0.07)
-test_f1_macro : 0.53 (+/- 0.07)
-test_f1_micro : 0.54 (+/- 0.07)
-train_accuracy : 0.55 (+/- 0.06)
-train_f1_macro : 0.54 (+/- 0.06)
-train_f1_micro : 0.55 (+/- 0.06)
+test_accuracy : 0.49 (+/- 0.07)
+test_f1_macro : 0.49 (+/- 0.07)
+test_f1_micro : 0.49 (+/- 0.07)
+train_accuracy : 0.50 (+/- 0.06)
+train_f1_macro : 0.50 (+/- 0.06)
+train_f1_micro : 0.50 (+/- 0.06)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -721,14 +1027,14 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 0.56 (+/- 0.24)
-score_time : 0.32 (+/- 0.00)
-test_accuracy : 0.63 (+/- 0.02)
-test_f1_macro : 0.59 (+/- 0.03)
-test_f1_micro : 0.63 (+/- 0.02)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
+fit_time : 0.36 (+/- 0.16)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.59 (+/- 0.02)
+test_f1_macro : 0.59 (+/- 0.02)
+test_f1_micro : 0.59 (+/- 0.02)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -739,11 +1045,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.21 (+/- 0.13)
+fit_time : 0.16 (+/- 0.07)
 score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.64 (+/- 0.02)
-test_f1_macro : 0.59 (+/- 0.02)
-test_f1_micro : 0.64 (+/- 0.02)
+test_accuracy : 0.59 (+/- 0.02)
+test_f1_macro : 0.58 (+/- 0.02)
+test_f1_micro : 0.59 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -757,19 +1063,19 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 1.42 (+/- 0.63)
+fit_time : 1.02 (+/- 0.47)
 score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.63 (+/- 0.01)
-test_f1_macro : 0.57 (+/- 0.02)
-test_f1_micro : 0.63 (+/- 0.01)
-train_accuracy : 0.66 (+/- 0.00)
-train_f1_macro : 0.61 (+/- 0.01)
-train_f1_micro : 0.66 (+/- 0.00)
+test_accuracy : 0.60 (+/- 0.04)
+test_f1_macro : 0.60 (+/- 0.04)
+test_f1_micro : 0.60 (+/- 0.04)
+train_accuracy : 0.65 (+/- 0.00)
+train_f1_macro : 0.65 (+/- 0.00)
+train_f1_micro : 0.65 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 NMF Decomposition 8
-x_nmf shape (15066, 8)
-y_nmf shape (15066,)
+x_nmf shape (10000, 8)
+y_nmf shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -777,92 +1083,14 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 2.84 (+/- 1.28)
-score_time : 0.01 (+/- 0.02)
-test_accuracy : 0.52 (+/- 0.07)
-test_f1_macro : 0.50 (+/- 0.06)
-test_f1_micro : 0.52 (+/- 0.07)
-train_accuracy : 0.52 (+/- 0.08)
-train_f1_macro : 0.51 (+/- 0.08)
-train_f1_micro : 0.52 (+/- 0.08)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 0.57 (+/- 0.25)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.63 (+/- 0.03)
-test_f1_macro : 0.58 (+/- 0.03)
-test_f1_micro : 0.63 (+/- 0.03)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.21 (+/- 0.12)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.64 (+/- 0.02)
-test_f1_macro : 0.58 (+/- 0.03)
-test_f1_micro : 0.64 (+/- 0.02)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 1.51 (+/- 0.38)
-score_time : 0.02 (+/- 0.01)
-test_accuracy : 0.63 (+/- 0.01)
-test_f1_macro : 0.57 (+/- 0.02)
-test_f1_micro : 0.63 (+/- 0.01)
-train_accuracy : 0.66 (+/- 0.00)
-train_f1_macro : 0.61 (+/- 0.01)
-train_f1_micro : 0.66 (+/- 0.00)
------------------------------------------------------
-
-
-
------------------------------------------------------
-PCA Decomposition 4
-x_pca shape (15066, 4)
-y_pca shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 2.62 (+/- 1.73)
+fit_time : 1.85 (+/- 1.02)
 score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.49 (+/- 0.05)
-test_f1_macro : 0.48 (+/- 0.05)
-test_f1_micro : 0.49 (+/- 0.05)
-train_accuracy : 0.48 (+/- 0.04)
-train_f1_macro : 0.47 (+/- 0.04)
-train_f1_micro : 0.48 (+/- 0.04)
+test_accuracy : 0.49 (+/- 0.10)
+test_f1_macro : 0.49 (+/- 0.10)
+test_f1_micro : 0.49 (+/- 0.10)
+train_accuracy : 0.50 (+/- 0.10)
+train_f1_macro : 0.50 (+/- 0.10)
+train_f1_micro : 0.50 (+/- 0.10)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -874,167 +1102,14 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 0.60 (+/- 0.23)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.02)
-test_f1_macro : 0.56 (+/- 0.02)
-test_f1_micro : 0.61 (+/- 0.02)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.22 (+/- 0.14)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.01)
-test_f1_macro : 0.56 (+/- 0.02)
-test_f1_micro : 0.61 (+/- 0.01)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 1.05 (+/- 0.61)
-score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.62 (+/- 0.01)
-test_f1_macro : 0.53 (+/- 0.02)
-test_f1_micro : 0.62 (+/- 0.01)
-train_accuracy : 0.65 (+/- 0.00)
-train_f1_macro : 0.57 (+/- 0.01)
-train_f1_micro : 0.65 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-NMF Decomposition 4
-x_nmf shape (15066, 4)
-y_nmf shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 2.13 (+/- 0.99)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.54 (+/- 0.10)
-test_f1_macro : 0.52 (+/- 0.09)
-test_f1_micro : 0.54 (+/- 0.10)
-train_accuracy : 0.53 (+/- 0.09)
-train_f1_macro : 0.52 (+/- 0.09)
-train_f1_micro : 0.53 (+/- 0.09)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 0.60 (+/- 0.22)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.02)
-test_f1_macro : 0.57 (+/- 0.02)
-test_f1_micro : 0.61 (+/- 0.02)
-train_accuracy : 0.98 (+/- 0.00)
-train_f1_macro : 0.98 (+/- 0.00)
-train_f1_micro : 0.98 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_decrease=0.0, min_impurity_split=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)
------------------------------------------------------
-fit_time : 0.23 (+/- 0.08)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.02)
-test_f1_macro : 0.56 (+/- 0.02)
-test_f1_micro : 0.61 (+/- 0.02)
-train_accuracy : 1.00 (+/- 0.00)
-train_f1_macro : 1.00 (+/- 0.00)
-train_f1_micro : 1.00 (+/- 0.00)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
-       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
-       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
-       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
-       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
-       subsample=1)
------------------------------------------------------
-fit_time : 0.89 (+/- 0.38)
-score_time : 0.02 (+/- 0.02)
-test_accuracy : 0.62 (+/- 0.01)
-test_f1_macro : 0.53 (+/- 0.02)
-test_f1_micro : 0.62 (+/- 0.01)
-train_accuracy : 0.65 (+/- 0.00)
-train_f1_macro : 0.57 (+/- 0.01)
-train_f1_micro : 0.65 (+/- 0.00)
------------------------------------------------------
-
-
-
------------------------------------------------------
-PCA Decomposition 2
-x_pca shape (15066, 2)
-y_pca shape (15066,)
------------------------------------------------------
-The Classifier
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
------------------------------------------------------
-fit_time : 1.59 (+/- 0.77)
-score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.52 (+/- 0.08)
-test_f1_macro : 0.50 (+/- 0.08)
-test_f1_micro : 0.52 (+/- 0.08)
-train_accuracy : 0.52 (+/- 0.08)
-train_f1_macro : 0.50 (+/- 0.08)
-train_f1_micro : 0.52 (+/- 0.08)
------------------------------------------------------
------------------------------------------------------
-The Classifier
-RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-            max_depth=None, max_features='auto', max_leaf_nodes=None,
-            min_impurity_decrease=0.0, min_impurity_split=None,
-            min_samples_leaf=1, min_samples_split=2,
-            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
-            oob_score=False, random_state=None, verbose=0,
-            warm_start=False)
------------------------------------------------------
-fit_time : 0.40 (+/- 0.21)
-score_time : 0.32 (+/- 0.01)
-test_accuracy : 0.58 (+/- 0.03)
-test_f1_macro : 0.54 (+/- 0.03)
-test_f1_micro : 0.58 (+/- 0.03)
-train_accuracy : 0.97 (+/- 0.00)
-train_f1_macro : 0.97 (+/- 0.00)
-train_f1_micro : 0.97 (+/- 0.00)
+fit_time : 0.37 (+/- 0.16)
+score_time : 0.32 (+/- 0.00)
+test_accuracy : 0.59 (+/- 0.02)
+test_f1_macro : 0.59 (+/- 0.02)
+test_f1_micro : 0.59 (+/- 0.02)
+train_accuracy : 0.99 (+/- 0.00)
+train_f1_macro : 0.99 (+/- 0.00)
+train_f1_micro : 0.99 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -1046,9 +1121,87 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
 fit_time : 0.17 (+/- 0.12)
-score_time : 0.33 (+/- 0.02)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.59 (+/- 0.04)
+test_f1_macro : 0.59 (+/- 0.03)
+test_f1_micro : 0.59 (+/- 0.04)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 1.11 (+/- 0.15)
+score_time : 0.02 (+/- 0.02)
+test_accuracy : 0.60 (+/- 0.04)
+test_f1_macro : 0.60 (+/- 0.04)
+test_f1_micro : 0.60 (+/- 0.04)
+train_accuracy : 0.65 (+/- 0.00)
+train_f1_macro : 0.65 (+/- 0.00)
+train_f1_micro : 0.65 (+/- 0.00)
+-----------------------------------------------------
+
+
+
+-----------------------------------------------------
+PCA Decomposition 4
+x_pca shape (10000, 4)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 1.49 (+/- 0.99)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.52 (+/- 0.07)
+test_f1_macro : 0.52 (+/- 0.07)
+test_f1_micro : 0.52 (+/- 0.07)
+train_accuracy : 0.52 (+/- 0.06)
+train_f1_macro : 0.52 (+/- 0.06)
+train_f1_micro : 0.52 (+/- 0.06)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 0.37 (+/- 0.29)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.57 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 0.98 (+/- 0.00)
+train_f1_macro : 0.98 (+/- 0.00)
+train_f1_micro : 0.98 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.18 (+/- 0.11)
+score_time : 0.32 (+/- 0.01)
 test_accuracy : 0.58 (+/- 0.02)
-test_f1_macro : 0.54 (+/- 0.02)
+test_f1_macro : 0.57 (+/- 0.02)
 test_f1_micro : 0.58 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
@@ -1063,19 +1216,19 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 0.57 (+/- 0.24)
-score_time : 0.02 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.01)
-test_f1_macro : 0.49 (+/- 0.01)
-test_f1_micro : 0.61 (+/- 0.01)
-train_accuracy : 0.62 (+/- 0.00)
-train_f1_macro : 0.52 (+/- 0.02)
-train_f1_micro : 0.62 (+/- 0.00)
+fit_time : 0.65 (+/- 0.25)
+score_time : 0.02 (+/- 0.04)
+test_accuracy : 0.59 (+/- 0.03)
+test_f1_macro : 0.59 (+/- 0.03)
+test_f1_micro : 0.59 (+/- 0.03)
+train_accuracy : 0.63 (+/- 0.00)
+train_f1_macro : 0.63 (+/- 0.00)
+train_f1_micro : 0.63 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
-NMF Decomposition 2
-x_nmf shape (15066, 2)
-y_nmf shape (15066,)
+NMF Decomposition 4
+x_nmf shape (10000, 4)
+y_nmf shape (10000,)
 -----------------------------------------------------
 The Classifier
 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
@@ -1083,13 +1236,13 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
      verbose=0)
 -----------------------------------------------------
-fit_time : 1.60 (+/- 0.82)
+fit_time : 1.19 (+/- 0.49)
 score_time : 0.01 (+/- 0.01)
-test_accuracy : 0.50 (+/- 0.09)
-test_f1_macro : 0.48 (+/- 0.08)
-test_f1_micro : 0.50 (+/- 0.09)
-train_accuracy : 0.49 (+/- 0.08)
-train_f1_macro : 0.48 (+/- 0.09)
+test_accuracy : 0.51 (+/- 0.08)
+test_f1_macro : 0.51 (+/- 0.08)
+test_f1_micro : 0.51 (+/- 0.08)
+train_accuracy : 0.50 (+/- 0.08)
+train_f1_macro : 0.50 (+/- 0.08)
 train_f1_micro : 0.50 (+/- 0.08)
 -----------------------------------------------------
 -----------------------------------------------------
@@ -1102,14 +1255,14 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
             oob_score=False, random_state=None, verbose=0,
             warm_start=False)
 -----------------------------------------------------
-fit_time : 0.41 (+/- 0.19)
-score_time : 0.32 (+/- 0.01)
+fit_time : 0.38 (+/- 0.18)
+score_time : 0.32 (+/- 0.00)
 test_accuracy : 0.58 (+/- 0.02)
-test_f1_macro : 0.53 (+/- 0.02)
+test_f1_macro : 0.58 (+/- 0.02)
 test_f1_micro : 0.58 (+/- 0.02)
-train_accuracy : 0.97 (+/- 0.00)
-train_f1_macro : 0.97 (+/- 0.00)
-train_f1_micro : 0.97 (+/- 0.00)
+train_accuracy : 0.98 (+/- 0.00)
+train_f1_macro : 0.98 (+/- 0.00)
+train_f1_micro : 0.98 (+/- 0.00)
 -----------------------------------------------------
 -----------------------------------------------------
 The Classifier
@@ -1120,11 +1273,11 @@ ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
            oob_score=False, random_state=None, verbose=0, warm_start=False)
 -----------------------------------------------------
-fit_time : 0.19 (+/- 0.11)
-score_time : 0.32 (+/- 0.00)
-test_accuracy : 0.58 (+/- 0.03)
-test_f1_macro : 0.54 (+/- 0.03)
-test_f1_micro : 0.58 (+/- 0.03)
+fit_time : 0.17 (+/- 0.11)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.02)
+test_f1_macro : 0.57 (+/- 0.02)
+test_f1_micro : 0.57 (+/- 0.02)
 train_accuracy : 1.00 (+/- 0.00)
 train_f1_macro : 1.00 (+/- 0.00)
 train_f1_micro : 1.00 (+/- 0.00)
@@ -1138,19 +1291,172 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
        reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
        subsample=1)
 -----------------------------------------------------
-fit_time : 0.69 (+/- 0.17)
+fit_time : 0.58 (+/- 0.23)
 score_time : 0.02 (+/- 0.01)
-test_accuracy : 0.61 (+/- 0.01)
-test_f1_macro : 0.49 (+/- 0.01)
-test_f1_micro : 0.61 (+/- 0.01)
-train_accuracy : 0.62 (+/- 0.00)
-train_f1_macro : 0.52 (+/- 0.02)
-train_f1_micro : 0.62 (+/- 0.00)
+test_accuracy : 0.59 (+/- 0.03)
+test_f1_macro : 0.59 (+/- 0.03)
+test_f1_micro : 0.59 (+/- 0.03)
+train_accuracy : 0.63 (+/- 0.00)
+train_f1_macro : 0.63 (+/- 0.00)
+train_f1_micro : 0.63 (+/- 0.00)
 -----------------------------------------------------
 
 
 
-Dims: [2304, 128, 64, 32, 16, 8, 4, 2]
-PCA Decomposition Time: [7.438584804534912, 4.59945011138916, 3.8566527366638184, 3.319042921066284, 2.5654971599578857, 4.024749755859375, 2.000162124633789]
-NMF Decomposition Time: [213.25005388259888, 102.77816009521484, 68.99229097366333, 41.24079513549805, 28.819877862930298, 27.710006952285767, 27.940429210662842]
-All Time Taken: 2445.259913921356
+-----------------------------------------------------
+PCA Decomposition 2
+x_pca shape (10000, 2)
+y_pca shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 0.79 (+/- 0.30)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.51 (+/- 0.12)
+test_f1_macro : 0.51 (+/- 0.12)
+test_f1_micro : 0.51 (+/- 0.12)
+train_accuracy : 0.51 (+/- 0.11)
+train_f1_macro : 0.50 (+/- 0.10)
+train_f1_micro : 0.51 (+/- 0.11)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 0.35 (+/- 0.20)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.54 (+/- 0.03)
+test_f1_macro : 0.54 (+/- 0.03)
+test_f1_micro : 0.54 (+/- 0.03)
+train_accuracy : 0.97 (+/- 0.00)
+train_f1_macro : 0.97 (+/- 0.00)
+train_f1_micro : 0.97 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.13 (+/- 0.05)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.54 (+/- 0.04)
+test_f1_macro : 0.53 (+/- 0.04)
+test_f1_micro : 0.54 (+/- 0.04)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 0.44 (+/- 0.21)
+score_time : 0.02 (+/- 0.04)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.57 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 0.60 (+/- 0.01)
+train_f1_macro : 0.60 (+/- 0.01)
+train_f1_micro : 0.60 (+/- 0.01)
+-----------------------------------------------------
+-----------------------------------------------------
+NMF Decomposition 2
+x_nmf shape (10000, 2)
+y_nmf shape (10000,)
+-----------------------------------------------------
+The Classifier
+LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+     verbose=0)
+-----------------------------------------------------
+fit_time : 0.87 (+/- 0.45)
+score_time : 0.01 (+/- 0.02)
+test_accuracy : 0.52 (+/- 0.09)
+test_f1_macro : 0.51 (+/- 0.09)
+test_f1_micro : 0.52 (+/- 0.09)
+train_accuracy : 0.52 (+/- 0.09)
+train_f1_macro : 0.52 (+/- 0.09)
+train_f1_micro : 0.52 (+/- 0.09)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_decrease=0.0, min_impurity_split=None,
+            min_samples_leaf=1, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+            oob_score=False, random_state=None, verbose=0,
+            warm_start=False)
+-----------------------------------------------------
+fit_time : 0.26 (+/- 0.17)
+score_time : 0.32 (+/- 0.01)
+test_accuracy : 0.54 (+/- 0.02)
+test_f1_macro : 0.54 (+/- 0.02)
+test_f1_micro : 0.54 (+/- 0.02)
+train_accuracy : 0.97 (+/- 0.00)
+train_f1_macro : 0.97 (+/- 0.00)
+train_f1_micro : 0.97 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=None, max_features='auto', max_leaf_nodes=None,
+           min_impurity_decrease=0.0, min_impurity_split=None,
+           min_samples_leaf=1, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=-1,
+           oob_score=False, random_state=None, verbose=0, warm_start=False)
+-----------------------------------------------------
+fit_time : 0.17 (+/- 0.08)
+score_time : 0.33 (+/- 0.01)
+test_accuracy : 0.54 (+/- 0.03)
+test_f1_macro : 0.54 (+/- 0.03)
+test_f1_micro : 0.54 (+/- 0.03)
+train_accuracy : 1.00 (+/- 0.00)
+train_f1_macro : 1.00 (+/- 0.00)
+train_f1_micro : 1.00 (+/- 0.00)
+-----------------------------------------------------
+-----------------------------------------------------
+The Classifier
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+       max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+       n_jobs=-1, nthread=-1, objective='binary:logistic', random_state=0,
+       reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=0, silent=True,
+       subsample=1)
+-----------------------------------------------------
+fit_time : 0.47 (+/- 0.30)
+score_time : 0.01 (+/- 0.01)
+test_accuracy : 0.57 (+/- 0.03)
+test_f1_macro : 0.57 (+/- 0.03)
+test_f1_micro : 0.57 (+/- 0.03)
+train_accuracy : 0.60 (+/- 0.01)
+train_f1_macro : 0.60 (+/- 0.01)
+train_f1_micro : 0.60 (+/- 0.01)
+-----------------------------------------------------
+
+
+
+Dims: [2304, 512, 256, 128, 64, 32, 16, 8, 4, 2]
+PCA Decomposition Time: [13.582525968551636, 6.427135944366455, 11.094497919082642, 3.130805015563965, 4.051199197769165, 2.057630777359009, 1.6477129459381104, 1.8588252067565918, 1.5582141876220703]
+NMF Decomposition Time: [1205.2243978977203, 438.1546833515167, 200.69708800315857, 69.47973823547363, 39.952183961868286, 26.45054602622986, 19.10313081741333, 18.49828600883484, 20.46137022972107]
+All Time Taken: 4079.323048353195
