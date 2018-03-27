@@ -10,8 +10,10 @@ import sys
 import csv
 import time
 import numpy as np
-import openpyxl
 import matplotlib.pyplot as plt
+
+
+#import openpyxl
 
 import math
 
@@ -26,9 +28,9 @@ from sklearn.decomposition import PCA
 from sklearn.decomposition import NMF
 
 from sklearn.model_selection import cross_validate
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import ShuffleSplit
-from sklearn import metrics
+#from sklearn.model_selection import cross_val_score
+#from sklearn.model_selection import ShuffleSplit
+#from sklearn import metrics
 
 
 stime = time.time()
@@ -36,15 +38,23 @@ stime = time.time()
 np.random.seed(46)
 eps = 1e-05
 
+
+#################################################
+# load data
+#################################################
+
 load_path = './fer2013.csv'
-#(0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral)
 
 x = []
 y = []
 
+#(0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral)
+targets = ['3','4']
+
+
 f = open(load_path)
 for line in csv.reader(f):
-    if line[0] in ['3','4']:
+    if line[0] in targets:
         x.append([float(a) for a in line[1].split(' ')])
         y.append(line[0])
 
@@ -52,28 +62,62 @@ for line in csv.reader(f):
 x = np.asarray(x)
 y = np.asarray(y)
 
+
+
+#################################################
+# suffle data and balance-sample
+#################################################
+
+x, y = shuffle(x, y)
+
+
+target_counts = {}
+for target in targets:
+    target_counts[target] = 0
+
+
+thresh = 5000
+selected_idx = []
+for i in range(len(y)):
+    if target_counts[y[i]] < thresh:
+        selected_idx.append(i)
+        target_counts[y[i]] += 1
+
+
+x = x[selected_idx,:]
+y = y[selected_idx]
+
 print('x shape', x.shape)
 print('y shape', y.shape)
 
 print('Category', set(y))
 
 
-# suffle data
-x, y = shuffle(x, y)
+
+nrow, ncol = 8, 8
+fig = plt.figure(figsize=(8, 8))
+
+for i in range(nrow * ncol):
+    fig.add_subplot(nrow, ncol, i + 1)
+    plt.imshow(x[i,:].reshape(48,48), cmap = 'gray')
+    plt.xticks(())
+    plt.yticks(())
+#plt.show()
+plt.savefig('face_sample.png')
+plt.clf()
 
 
 
-plt.imshow(x[0].reshape(48,48), cmap = 'gray')
+#################################################
+# PCA Components
+#################################################
 
-
-# PCA Components Plot
-
-nrow, ncol = 10, 10
+nrow, ncol = 8, 8
 pca = PCA(n_components = nrow * ncol)
 x_pca = pca.fit_transform(x)
 
 
-fig = plt.figure(figsize=(15, 15))
+fig = plt.figure(figsize=(8, 8))
 
 for i in range(nrow * ncol):
     fig.add_subplot(nrow, ncol, i + 1)
@@ -85,14 +129,36 @@ plt.savefig('face_pca_components.png')
 plt.clf()
 
 
-# NMF Components Plot
 
-nrow, ncol = 10, 10
+plt.plot(pca.explained_variance_ratio_)
+plt.title('PCA Components Explained Variance Ratio')
+plt.xlabel('n components')
+plt.ylabel('explained variance ratio')
+#plt.show()
+plt.savefig('face_pca_explained_varinace_ratio.png')
+plt.clf()
+
+
+pca = PCA(n_components = 2)
+x_pca = pca.fit_transform(x)
+plt.scatter(x_pca[:,0], x_pca[:,1], c=y)
+#plt.show()
+plt.savefig('face_pca_scatter.png')
+plt.clf()
+
+
+
+
+#################################################
+# NMF Components
+#################################################
+
+nrow, ncol = 8, 8
 nmf = NMF(n_components = nrow * ncol)
 x_nmf = nmf.fit_transform(x)
 
 
-fig = plt.figure(figsize=(15, 15))
+fig = plt.figure(figsize=(8, 8))
 
 for i in range(nrow * ncol):
     fig.add_subplot(nrow, ncol, i + 1)
@@ -105,15 +171,21 @@ plt.clf()
 
 
 
+nmf = NMF(n_components = 2)
+x_nmf = nmf.fit_transform(x)
+plt.scatter(x_nmf[:,0], x_nmf[:,1], c=y)
+#plt.show()
+plt.savefig('face_nmf_scatter.png')
+plt.clf()
+
 
 
 #sys.exit()
 
-
-
-
-
+#################################################
 # modle building
+#################################################
+
 svm = svm.LinearSVC()
 rf = RandomForestClassifier(n_jobs = -1)
 ext = ExtraTreesClassifier(n_jobs = -1)
@@ -122,17 +194,17 @@ xgb = XGBClassifier(n_jobs = -1)
 clfs = [svm, rf, ext, xgb]
 clf_names = ['SVM', 'RF', 'EXT', 'XGB']
 
+
+
+
+
+#################################################
+# scoring metrics
+#################################################
+
+
 #scoring = ['fit_time','accuracy','f1','precision','recall','roc_auc']
 scoring = ['accuracy','f1_micro','f1_macro']
-
-#fit_time
-#score_time
-#test_accuracy
-#test_f1_macro
-#test_f1_micro
-#train_accuracy
-#train_f1_macro
-#train_f1_micro
 
 
 pca_fit_time_records = {}
@@ -184,7 +256,8 @@ for clf_name in clf_names:
     
 
 
-dims = [x.shape[1],128,64,32,16,8,4,2]
+dims = [x.shape[1],512,256,128,64,32,16,8,4,2] 
+#dims = [16,8,4,2]
 
 pca_decomposition_times = []
 nmf_decomposition_times = []
@@ -395,9 +468,9 @@ for dim in dims:
 log_dims = [math.log(dim,2) for dim in dims]
 
 
-#######################
+#################################################
 # fit time plot
-#######################
+#################################################
 
 the_legends = []
 for clf_name in clf_names:
@@ -432,9 +505,9 @@ plt.clf()
 
 
 
-#######################
+#################################################
 # acc plot
-#######################
+#################################################
 
 the_legends = []
 for clf_name in clf_names:
@@ -500,9 +573,9 @@ plt.clf()
 
 
 
-#######################
+#################################################
 # f1 macro plot
-#######################
+#################################################
 
 the_legends = []
 for clf_name in clf_names:
@@ -572,9 +645,9 @@ plt.clf()
 
 
 
-#######################
+#################################################
 # f1 micro plot
-#######################
+#################################################
 
 the_legends = []
 for clf_name in clf_names:
@@ -642,6 +715,10 @@ plt.clf()
 
 
 
+
+#################################################
+# Decomposition Print
+#################################################
 
 print('Dims:', dims)
 print('PCA Decomposition Time:', pca_decomposition_times)
