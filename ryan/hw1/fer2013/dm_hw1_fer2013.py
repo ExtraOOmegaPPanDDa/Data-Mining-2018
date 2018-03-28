@@ -15,28 +15,43 @@ import matplotlib.pyplot as plt
 
 #import openpyxl
 
+import scipy
 import math
+
+import sklearn
 
 from sklearn.utils import shuffle
 
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
+
+import xgboost
 from xgboost.sklearn import XGBClassifier
 
 from sklearn.decomposition import PCA
 from sklearn.decomposition import NMF
 
 from sklearn.model_selection import cross_validate
+
 #from sklearn.model_selection import cross_val_score
 #from sklearn.model_selection import ShuffleSplit
 #from sklearn import metrics
+
+
 
 
 stime = time.time()
 
 np.random.seed(46)
 eps = 1e-05
+
+
+print('sklearn version:', sklearn.__version__)
+print('scipy version:', scipy.__version__)
+print('xgboost version:', xgboost.__version__)
+
+
 
 
 #################################################
@@ -107,10 +122,11 @@ plt.savefig('face_sample.png')
 plt.clf()
 
 
-
 #################################################
 # PCA Components
 #################################################
+
+print('PCA Components')
 
 nrow, ncol = 8, 8
 pca = PCA(n_components = nrow * ncol)
@@ -139,7 +155,7 @@ plt.savefig('face_pca_explained_varinace_ratio.png')
 plt.clf()
 
 
-pca = PCA(n_components = 2)
+pca = PCA(n_components = 2, whiten=True, svd_solver = 'full')
 x_pca = pca.fit_transform(x)
 plt.scatter(x_pca[:,0], x_pca[:,1], c=y)
 #plt.show()
@@ -147,11 +163,12 @@ plt.savefig('face_pca_scatter.png')
 plt.clf()
 
 
-
-
 #################################################
 # NMF Components
 #################################################
+
+
+print('NMF Components')
 
 nrow, ncol = 8, 8
 nmf = NMF(n_components = nrow * ncol)
@@ -182,16 +199,17 @@ plt.clf()
 
 #sys.exit()
 
+
 #################################################
 # modle building
 #################################################
 
-svm = svm.LinearSVC()
+svmlin = svm.SVC(kernel = 'rbf', max_iter = 4000)
 rf = RandomForestClassifier(n_jobs = -1)
 ext = ExtraTreesClassifier(n_jobs = -1)
 xgb = XGBClassifier(n_jobs = -1)
 
-clfs = [svm, rf, ext, xgb]
+clfs = [svmlin, rf, ext, xgb]
 clf_names = ['SVM', 'RF', 'EXT', 'XGB']
 
 
@@ -257,11 +275,13 @@ for clf_name in clf_names:
 
 
 dims = [x.shape[1],512,256,128,64,32,16,8,4,2] 
-#dims = [16,8,4,2]
+#dims = [4,2]
 
 pca_decomposition_times = []
 nmf_decomposition_times = []
 
+
+cv_num = 10
 
 
 for dim in dims:  
@@ -293,7 +313,7 @@ for dim in dims:
             scores = cross_validate(clf,
                                     x, y,
                                     scoring = scoring,
-                                    cv = 10,
+                                    cv = cv_num,
                                     return_train_score = True,
                                     n_jobs = -1,
                                     verbose = 1
@@ -367,7 +387,7 @@ for dim in dims:
                 scores = cross_validate(clf,
                                         x_pca, y_pca,
                                         scoring = scoring,
-                                        cv = 10,
+                                        cv = cv_num,
                                         return_train_score = True,
                                         n_jobs = -1,
                                         verbose = 1
@@ -432,7 +452,7 @@ for dim in dims:
                 scores = cross_validate(clf,
                                             x_pca, y_pca,
                                             scoring = scoring,
-                                            cv = 10,
+                                            cv = cv_num,
                                             return_train_score = True,
                                             n_jobs = -1,
                                             verbose = 1
