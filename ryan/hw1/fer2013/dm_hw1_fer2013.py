@@ -39,6 +39,9 @@ from sklearn.model_selection import cross_validate
 #from sklearn import metrics
 
 
+from sklearn.preprocessing import MinMaxScaler
+
+
 
 
 stime = time.time()
@@ -155,7 +158,7 @@ plt.savefig('face_pca_explained_varinace_ratio.png')
 plt.clf()
 
 
-pca = PCA(n_components = 2, whiten=True, svd_solver = 'full')
+pca = PCA(n_components = 2)
 x_pca = pca.fit_transform(x)
 plt.scatter(x_pca[:,0], x_pca[:,1], c=y)
 #plt.show()
@@ -199,12 +202,27 @@ plt.clf()
 
 #sys.exit()
 
+#################################################
+# scale x
+#################################################
+
+scaler = MinMaxScaler(feature_range=(0, 1))
+
+x = scaler.fit_transform(x)
+
+print('scale_x')
+print(x)
+
+#sys.exit()
+
+
 
 #################################################
 # modle building
 #################################################
 
-svmlin = svm.SVC(kernel = 'rbf', max_iter = 4000)
+svmlin = svm.SVC(kernel = 'linear', max_iter = 1000, gamma = 'auto')
+#svmlin = svm.LinearSVR()
 rf = RandomForestClassifier(n_jobs = -1)
 ext = ExtraTreesClassifier(n_jobs = -1)
 xgb = XGBClassifier(n_jobs = -1)
