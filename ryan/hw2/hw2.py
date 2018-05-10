@@ -80,10 +80,8 @@ ws_max_col = ws.max_column
 n_grams_n = [2,3,4,5,6,7]
 
 
-#keywords = ['鴻海', '富士康', '蘋果', 'Apple', '台積電', '中華電信', '國民黨', '民進黨']
+keywords = ['鴻海', '富士康', '蘋果', 'Apple', '台積電', '中華電信', '選舉', '大數據']
 
-
-keywords = ['Apple','鴻海','選舉']
 
 stockwords = ['台股','個股','類股','收盤','上漲','下跌','漲幅']
 
@@ -343,18 +341,94 @@ print('conf_min:', conf_min)
 
 patterns = pyfpgrowth.find_frequent_patterns(the_input, sup_min)
 print('PATTERN')
-for the_key in sorted(patterns, key = len, reverse = True)[:100]:
+
+nodes = set()
+for the_key in sorted(patterns, key = len, reverse = True)[:1000]:
     the_result = patterns[the_key]
     print(the_key, the_result)
+    
+    for item in the_key:
+        nodes.add(item)
+
+nodes = sorted(list(nodes))
+
+adjacency_mat = np.zeros((len(nodes),len(nodes)))
+
+for the_key in sorted(patterns, key = len, reverse = True)[:1000]:
+    the_result = patterns[the_key]
+#    print(the_key, the_result)
+    for item in the_key:
+        for item2 in the_key:
+            adjacency_mat[nodes.index(item), nodes.index(item2)] += the_result
+
+
+for i in range(len(adjacency_mat)):
+    adjacency_mat[i,:] /= sum(adjacency_mat[i,:])
+            
+        
 
 print('\n\n')
 
 
 rules = pyfpgrowth.generate_association_rules(patterns, conf_min)
 print('RULE')
-for the_key in sorted(rules, key = len, reverse = True)[:100]:
+for the_key in sorted(rules, key = len, reverse = True)[:1000]:
     the_result = rules[the_key]
     print(the_key, the_result)
 
 #relim_input = itemmining.get_relim_input(the_input)
 #report = itemmining.relim(relim_input, min_support = 20)
+
+
+
+
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+#from sklearn.decomposition import PCA
+#from sklearn.decomposition import NMF
+from sklearn.cluster import KMeans
+from adjustText import adjust_text
+
+plt.rcParams['font.sans-serif']=['SimHei'] 
+plt.rcParams['axes.unicode_minus'] = False
+
+
+kmeans_result = KMeans(n_clusters = 10, random_state = 0).fit(adjacency_mat)
+
+
+decomposition_model = TSNE(n_components = 2)
+np.set_printoptions(suppress = True)
+vis_data = decomposition_model.fit_transform(adjacency_mat) 
+
+vis_x = vis_data[:,0]
+vis_y = vis_data[:,1]
+
+
+#plt.figure(figsize=(16, 9))
+#plt.scatter(vis_x, vis_y, c = kmeans_result.labels_)
+#for label, x, y in zip(nodes, vis_x, vis_y):
+#    plt.annotate(label, xy=(x, y), xytext=(0, 0), textcoords='offset points')
+#
+#
+#
+#plt.savefig('draw.png', dpi = 1000)
+#plt.show()
+
+
+
+def plot_scatter(adjust, xvalue, yvalue, label, color):
+    plt.clf()
+    plt.figure(figsize=(16, 9))
+    plt.scatter(xvalue, yvalue, s = 15, c = color, edgecolors = 'None', alpha = 0.5)
+    texts = []
+    for x, y, s in zip(xvalue, yvalue, label):
+        texts.append(plt.text(x, y, s, size=7))
+    if adjust:
+        adjust_text(texts, arrowprops = dict(arrowstyle = "-", color = 'k', lw = 0.5))
+    
+    
+    plt.savefig('draw.png', dpi = 1000)
+    plt.show()
+        
+plot_scatter(adjust = True, xvalue = vis_x, yvalue = vis_y, label = nodes, color = kmeans_result.labels_)
+
