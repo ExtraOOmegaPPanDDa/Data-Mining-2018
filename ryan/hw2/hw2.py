@@ -17,7 +17,7 @@ import pickle
 from collections import Counter
 
 import pyfpgrowth
-from pymining import itemmining, assocrules, perftesting
+#from pymining import itemmining, assocrules, perftesting
 
 import openpyxl
 
@@ -80,8 +80,10 @@ ws_max_col = ws.max_column
 n_grams_n = [2,3,4,5,6,7]
 
 
-keywords = ['鴻海', '富士康', '蘋果', 'Apple', '台積電', '中華電信', '國民黨', '民進黨']
+#keywords = ['鴻海', '富士康', '蘋果', 'Apple', '台積電', '中華電信', '國民黨', '民進黨']
 
+
+keywords = ['Apple','鴻海','選舉']
 
 stockwords = ['台股','個股','類股','收盤','上漲','下跌','漲幅']
 
@@ -218,7 +220,7 @@ term_list = sorted(tf_counter, key = len, reverse = True)
 del_term_set = set()
 
 se_thresh1 = 0.6
-se_thresh2 = 0.9
+se_thresh2 = 0.6
 
 eps = 1e-5
 
@@ -332,9 +334,10 @@ for i in range(ws_max_row):
 print('frequent pattern mining...')
 
 the_input = the_term_sets[:]
-sup_min = 100
+sup_min = 50
 conf_min = 0.6
 
+print('count', len(the_input))
 print('sup_min:', sup_min)
 print('conf_min:', conf_min)
 
@@ -355,5 +358,3 @@ for the_key in sorted(rules, key = len, reverse = True)[:100]:
 
 #relim_input = itemmining.get_relim_input(the_input)
 #report = itemmining.relim(relim_input, min_support = 20)
-                
-        
