@@ -80,7 +80,7 @@ ws_max_col = ws.max_column
 n_grams_n = [2,3,4,5,6,7]
 
 
-keywords = ['鴻海', '富士康', '蘋果', 'Apple', '台積電', '中華電信', '選舉', '大數據']
+keywords = ['鴻海', 'Apple', '選舉']
 
 
 stockwords = ['台股','個股','類股','收盤','上漲','下跌','漲幅']
@@ -343,8 +343,14 @@ patterns = pyfpgrowth.find_frequent_patterns(the_input, sup_min)
 print('PATTERN')
 
 nodes = set()
-for the_key in sorted(patterns, key = len, reverse = True)[:1000]:
+for the_key in sorted(patterns, key = len, reverse = True):
+    
+    if len(the_key) <= 3:
+        break
+    
+    
     the_result = patterns[the_key]
+    
     print(the_key, the_result)
     
     for item in the_key:
@@ -354,9 +360,13 @@ nodes = sorted(list(nodes))
 
 adjacency_mat = np.zeros((len(nodes),len(nodes)))
 
-for the_key in sorted(patterns, key = len, reverse = True)[:1000]:
+for the_key in sorted(patterns, key = len, reverse = True):
+    
+    if len(the_key) <= 3:
+        break
+    
     the_result = patterns[the_key]
-#    print(the_key, the_result)
+    
     for item in the_key:
         for item2 in the_key:
             adjacency_mat[nodes.index(item), nodes.index(item2)] += the_result
@@ -372,7 +382,7 @@ print('\n\n')
 
 rules = pyfpgrowth.generate_association_rules(patterns, conf_min)
 print('RULE')
-for the_key in sorted(rules, key = len, reverse = True)[:1000]:
+for the_key in sorted(rules, key = len, reverse = True):
     the_result = rules[the_key]
     print(the_key, the_result)
 
